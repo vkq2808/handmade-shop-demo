@@ -1,0 +1,177 @@
+[{
+  "_id": {
+    "$oid": "687a04241c3930b0c83db6a2"
+  },
+  "name": "Vòng tay đá mã não",
+  "description": "Vòng tay thủ công làm từ đá mã não tự nhiên, mang lại may mắn và bình an.",
+  "price": 250000,
+  "category": {
+    "$oid": "687a02d611cfbeca760341e0"
+  },
+  "stock": 10,
+  "images": [
+    "https://example.com/images/vong-da-1.jpg",
+    "https://example.com/images/vong-da-2.jpg"
+  ],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:21:56.133Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:21:56.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a04731c3930b0c83db6a6"
+  },
+  "name": "Con ếch xanh ngáo ngơ",
+  "description": "Con ếch xanh mắt lồi mang vẻ ngơ ngác, có chút ngáo ộp siêu cute",
+  "price": 250000,
+  "category": {
+    "$oid": "687a02ee11cfbeca760341e4"
+  },
+  "stock": 10,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:23:15.391Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:23:15.391Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a04b21c3930b0c83db6aa"
+  },
+  "name": "Bó hoa tulip móc len",
+  "description": "Bó 5 bông tulip siêu xinh, màu ngẫu nhiên",
+  "price": 200000,
+  "category": {
+    "$oid": "687a02ee11cfbeca760341e4"
+  },
+  "stock": 10,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:24:18.383Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:24:18.383Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a04d51c3930b0c83db6ae"
+  },
+  "name": "Bó hoa tulip kẽm nhung",
+  "description": "Bó 5 bông tulip siêu xinh, màu ngẫu nhiên làm từ kẽm nhung",
+  "price": 150000,
+  "category": {
+    "$oid": "687a030411cfbeca760341e8"
+  },
+  "stock": 8,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:24:53.477Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:51:08.777Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a04ec1c3930b0c83db6b2"
+  },
+  "name": "Bó hoa hồng kẽm nhung",
+  "description": "Bó 5 bông hoa hồng siêu xinh, màu ngẫu nhiên làm từ kẽm nhung",
+  "price": 17500,
+  "category": {
+    "$oid": "687a030411cfbeca760341e8"
+  },
+  "stock": 10,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:25:16.006Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:25:16.006Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a05351c3930b0c83db6b6"
+  },
+  "name": "Bộ đồ chơi cầu trượt tái chế",
+  "description": "Bộ đồ chơi cầu trượt sáng tạo từ vỏ chai nhựa tái chế, giảm ô nhiễm môi trường",
+  "price": 17500,
+  "category": {
+    "$oid": "687a032b11cfbeca760341ec"
+  },
+  "stock": 9,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:26:29.058Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:49:25.853Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a053d1c3930b0c83db6ba"
+  },
+  "name": "Bộ đồ chơi cầu trượt tái chế",
+  "description": "Bộ đồ chơi cầu trượt sáng tạo từ vỏ chai nhựa tái chế, giảm ô nhiễm môi trường",
+  "price": 50000,
+  "category": {
+    "$oid": "687a032b11cfbeca760341ec"
+  },
+  "stock": 8,
+  "images": [],
+  "isFeatured": true,
+  "rate": 0,
+  "feedbacks": [],
+  "createdAt": {
+    "$date": "2025-07-18T08:26:37.774Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:49:37.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68949c18243cd477ca078244"
+  },
+  "name": "mix linh lan tuplip móc len",
+  "description": "bó hoa tulip lằm bằng len móc siêu xinh, siêu ý nghĩa làm quà tặng, trang trí nhà cửa ",
+  "price": 240000,
+  "images": [
+    "https://tiemlennhaty.com/wp-content/uploads/2023/12/cach-moc-hoa-tulip-bang-len-dep-va-nhanh.png"
+  ],
+  "isFeartured": true,
+  "category": "ObjectId('687a02ee11cfbeca760341e4')"
+}]

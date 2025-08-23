@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "687658e66553948e7de37f41"
+  },
+  "name": "Nguyễn Văn A",
+  "email": "vana@example.com",
+  "password": "$2b$10$cyINIHdUXJFvU8UXOk6uCOBXe6tactwr93DyKmdzIvDw9OGVLVyvy",
+  "phone": "0123456789",
+  "address": "123 Lê Lợi, TP. HCM",
+  "role": "user",
+  "isActive": true,
+  "avatar": "",
+  "createdAt": {
+    "$date": "2025-07-15T13:34:30.331Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-15T13:34:30.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68765fb6e76b432553437731"
+  },
+  "name": "Nguyễn Thị Thư",
+  "email": "nguyenthithu@gmail.com",
+  "password": "$2b$10$czBWet9XHHhES2JkIKL.RuMfjreWJ3qn.CwvvYDbQ1d/4KiIKhsbu",
+  "phone": "0123456789",
+  "address": "Thái Bình",
+  "role": "admin",
+  "isActive": true,
+  "avatar": "",
+  "createdAt": {
+    "$date": "2025-07-15T14:03:34.765Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-15T14:03:34.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688e4292e300dce9950e39ef"
+  },
+  "name": "hoang",
+  "email": "hoang@gmail.com",
+  "password": "$2b$10$mvw7dfNw6N5CnMvpxFsFIuBINvL99JMJjEKM7BogXS79ziJD5WZVO",
+  "phone": "",
+  "address": "",
+  "role": "user",
+  "isActive": true,
+  "avatar": "",
+  "createdAt": {
+    "$date": "2025-08-02T16:53:38.467Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-02T16:53:38.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6898ddee18027e9c66e985ec"
+  },
+  "name": "thunguyen",
+  "email": "thu2@gmail.com",
+  "password": "$2b$10$MU2uJZOzdAS9RIdmZgLO8uyJMP5UlP.RLCQ.OD7HmwOBUsoqSyXxS",
+  "phone": "",
+  "address": "",
+  "role": "user",
+  "isActive": true,
+  "avatar": "",
+  "createdAt": {
+    "$date": "2025-08-10T17:59:10.456Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-10T17:59:10.456Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6898de0118027e9c66e985ef"
+  },
+  "name": "thunguyenne",
+  "email": "thu3@gmail.com",
+  "password": "$2b$10$AiL5wVPgwbaf.jIdr7Or0ehfulTD0RqpQXm4NoTX1hBOPokZFlFPC",
+  "phone": "",
+  "address": "",
+  "role": "user",
+  "isActive": true,
+  "avatar": "",
+  "createdAt": {
+    "$date": "2025-08-10T17:59:29.629Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-10T17:59:29.629Z"
+  },
+  "__v": 0
+}]
