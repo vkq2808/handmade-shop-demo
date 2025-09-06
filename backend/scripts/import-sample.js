@@ -167,6 +167,7 @@ function normalizeProduct(p) {
 }
 
 async function main() {
+
   const flags = Object.fromEntries(
     process.argv.slice(2).map((a) => [a.replace(/^--/, ''), true])
   );

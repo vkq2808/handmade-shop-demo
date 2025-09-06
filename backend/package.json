@@ -10,7 +10,8 @@
     "fix:slugs": "node scripts/fix-product-slugs.js",
     "seed:sample": "node scripts/import-sample.js",
     "seed:sample:drop": "node scripts/import-sample.js --drop",
-    "seed:settings": "node scripts/seed-settings.js"
+    "seed:settings": "node scripts/seed-settings.js",
+    "seed:all": "npm run seed:settings && npm run seed:sample"
   },
   "author": "",
   "license": "ISC",

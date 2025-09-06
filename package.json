@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:fe": "cd frontend && npm run dev",
+    "start:be": "cd backend && npm run dev",
+    "start": "concurrently \"npm run start:fe\" \"npm run start:be\"",
+    "seed:all": "cd backend && npm run seed:all",
+    "install:be": "cd backend && npm install",
+    "install:fe": "cd frontend && npm install",
+    "install": "npm run install:be && npm run install:fe"
   },
   "repository": {
     "type": "git",
@@ -11,9 +18,6 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ThwNguyen/TTTN/issues"
-  },
-  "homepage": "https://github.com/ThwNguyen/TTTN#readme",
+  "bugs": {},
   "description": ""
 }
