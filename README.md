@@ -1,76 +1,70 @@
-## HM Monorepo – Install, Seed, and Run
+## HM Monorepo – Cài đặt, Seed dữ liệu và Chạy Dev
 
-This guide covers installing dependencies, configuring environment variables, seeding sample data, and running the frontend and backend in development.
+Tài liệu này hướng dẫn cài đặt phụ thuộc, cấu hình biến môi trường, seed dữ liệu mẫu và chạy frontend/backend ở môi trường phát triển.
 
-### Prerequisites
-- Node.js 18+ and npm
-- MongoDB (local instance or a cloud URI)
+### Yêu cầu
+- Node.js 18+ và npm
+- MongoDB (máy local hoặc URI đám mây)
 
-## 1) Install dependencies
+## 1) Cài đặt phụ thuộc
 
-From the repository root:
+Từ thư mục gốc dự án:
 
 ```bash
 npm install
 ```
 
-This runs both frontend and backend installs via the root scripts.
+Lệnh này sẽ cài đặt cả frontend và backend thông qua các script ở thư mục gốc.
 
-Alternative (manual):
+Cách khác (thủ công):
 
 ```bash
 cd backend && npm install
 cd ../frontend && npm install
 ```
 
-## 2) Configure environment variables (backend)
+## 2) Cấu hình biến môi trường (backend)
 
-Create `backend/.env` (you can copy from the provided example):
+Tạo file `backend/.env` (có thể copy từ file mẫu):
 
 ```bash
 cp backend/.env.example backend/.env
 ```
 
-Edit values as needed. Key variables used by the backend:
-- PORT: API port (default 5000)
-- MONGODB_URI: Mongo connection string
-- JWT_SECRET: Secret for JWT signing
-- FRONTEND_URL: Your Vite dev URL (default http://localhost:5173)
-- SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM: Optional SMTP settings for emails
+Sau đó chỉnh sửa các giá trị phù hợp. Những biến quan trọng backend đang dùng:
+- PORT: Cổng API (mặc định 5000)
+- MONGODB_URI: Chuỗi kết nối MongoDB
+- JWT_SECRET: Secret ký JWT
+- FRONTEND_URL: URL dev của Vite (mặc định http://localhost:5173)
+- SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM: Thiết lập SMTP (tuỳ chọn) cho email
 
-## 3) Seed sample data
+## 3) Seed dữ liệu mẫu
 
-Ensure `MONGODB_URI` is set in `backend/.env`, then run from the repo root:
+Đảm bảo `MONGODB_URI` đã được thiết lập trong `backend/.env`, sau đó chạy từ thư mục gốc repo:
 
 ```bash
 npm run seed:all
 ```
 
-This seeds settings and sample data (users, categories, products, orders) from `backend/sample_data/`.
+Lệnh này sẽ seed cấu hình (settings) và dữ liệu mẫu (users, categories, products, orders) từ `backend/sample_data/`.
 
-Useful variants (run inside `backend/`):
+Các biến thể hữu ích (chạy bên trong `backend/`):
 
 ```bash
-npm run seed:sample        # import sample data
-npm run seed:sample:drop   # drop target collections before import
-npm run seed:settings      # seed settings only
+npm run seed:sample        # import dữ liệu mẫu
+npm run seed:sample:drop   # xoá collection mục tiêu trước khi import
+npm run seed:settings      # chỉ seed settings
 ```
 
-## 4) Run in development
+## 4) Chạy ở môi trường phát triển
 
-Option A – start both (frontend + backend) from root:
+Cách A – chạy cả frontend + backend từ thư mục gốc:
 
 ```bash
 npm start
 ```
 
-Note: This uses the `concurrently` CLI. If you see "concurrently: command not found", install it at the root:
-
-```bash
-npm i -D concurrently
-```
-
-Option B – start each separately:
+Cách B – chạy riêng từng phần:
 
 Backend (Express + MongoDB):
 ```bash
@@ -84,17 +78,17 @@ cd frontend
 npm run dev
 ```
 
-## URLs
-- API base: http://localhost:5000 (configurable via `PORT`)
-- Frontend: http://localhost:5173 (Vite default)
+## Địa chỉ truy cập
+- API base: http://localhost:5000 (có thể thay đổi qua biến `PORT`)
+- Frontend: http://localhost:5173 (mặc định của Vite)
 
-## Troubleshooting
-- Mongo connection error: verify `MONGODB_URI` in `backend/.env`, and ensure MongoDB is running and reachable.
-- CORS issues: set `FRONTEND_URL` in `backend/.env` to your actual frontend origin, e.g. `http://localhost:5173`.
-- Email not sending: configure SMTP variables in `backend/.env` and use an app password if required by your provider.
-- `concurrently` missing: install it with `npm i -D concurrently` at the repo root or run backend/frontend in separate terminals.
+## Khắc phục sự cố
+- Lỗi kết nối Mongo: kiểm tra `MONGODB_URI` trong `backend/.env`, đảm bảo MongoDB đang chạy và truy cập được.
+- Lỗi CORS: thiết lập `FRONTEND_URL` trong `backend/.env` trỏ đúng origin của frontend, ví dụ `http://localhost:5173`.
+- Email không gửi: cấu hình đầy đủ biến SMTP trong `backend/.env` và dùng app password nếu nhà cung cấp yêu cầu.
+- Thiếu `concurrently`: cài bằng `npm i -D concurrently` ở thư mục gốc, hoặc mở 2 terminal để chạy backend/frontend riêng.
 
-## Scripts overview
-- Root: `npm run install` (install both), `npm run seed:all`, `npm run start:fe`, `npm run start:be`, `npm start`
+## Tổng quan script
+- Root: `npm run install` (cài cả hai), `npm run seed:all`, `npm run start:fe`, `npm run start:be`, `npm start`
 - Backend: `npm run dev`, `npm run seed:all`, `npm run seed:sample`, `npm run seed:sample:drop`, `npm run seed:settings`
 
