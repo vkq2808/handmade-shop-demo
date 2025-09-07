@@ -6,21 +6,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:fe": "cd frontend && npm run dev",
     "start:be": "cd backend && npm run dev",
-    "start": "concurrently \"npm run start:fe\" \"npm run start:be\"",
     "seed:all": "cd backend && npm run seed:all",
     "install:be": "cd backend && npm install",
     "install:fe": "cd frontend && npm install",
-    "install": "npm run install:be && npm run install:fe && npm install concurrently"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThwNguyen/TTTN.git"
+    "install": "npm run install:be && npm run install:fe"
   },
   "author": "",
   "license": "ISC",
   "bugs": {},
-  "description": "",
-  "dependencies": {
-    "concurrently": "^9.2.1"
-  }
+  "description": ""
 }

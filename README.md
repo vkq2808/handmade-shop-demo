@@ -56,15 +56,7 @@ npm run seed:sample:drop   # xoá collection mục tiêu trước khi import
 npm run seed:settings      # chỉ seed settings
 ```
 
-## 4) Chạy ở môi trường phát triển
-
-Cách A – chạy cả frontend + backend từ thư mục gốc:
-
-```bash
-npm start
-```
-
-Cách B – chạy riêng từng phần:
+## 4) Chạy ở môi trường phát triển  -  chạy riêng từng phần:
 
 Backend (Express + MongoDB):
 ```bash
@@ -89,6 +81,7 @@ npm run dev
 - Thiếu `concurrently`: cài bằng `npm i -D concurrently` ở thư mục gốc, hoặc mở 2 terminal để chạy backend/frontend riêng.
 
 ## Tổng quan script
-- Root: `npm run install` (cài cả hai), `npm run seed:all`, `npm run start:fe`, `npm run start:be`, `npm start`
-- Backend: `npm run dev`, `npm run seed:all`, `npm run seed:sample`, `npm run seed:sample:drop`, `npm run seed:settings`
+- Root: `npm run install` (cài cả hai), `npm run seed:all`, `npm run start:fe`, `npm run start:be`.
+- Backend: `npm run dev`, `npm run seed:all`, `npm run seed:sample`, `npm run seed:sample:drop`, `npm run seed:settings`.
+- Frontend: `npm run dev`, `npm run build`.
 
