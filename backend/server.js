@@ -16,6 +16,7 @@ const paymentRoutes = require('./routes/payment.route');
 const favoriteRoutes = require('./routes/favorite.route');
 const importRoutes = require('./routes/import.route');
 const settingsRoutes = require('./routes/settings.route');
+const helmet = require ('helmet');
 
 const expressWinston = require('express-winston'); 
 const logger = require('./utils/logger.js')
@@ -24,6 +25,29 @@ const User = require('./models/User');
 dotenv.config();
 
 const app = express();
+
+// Giới hạn JSON body 1MB
+app.use(express.json({ limit: "1mb" }));
+
+// Giới hạn form-urlencoded 500KB
+app.use(express.urlencoded({ limit: "500kb", extended: true }));
+
+
+const {getLimiter} = require('./config/redis');
+app.use('/*', getLimiter());
+
+const xssSanitize = require('xss-sanitize');
+const options = {
+  whiteList:{}, // Bỏ qua toàn bộ tags
+  stripIgnoreTag:true, // Xoá thẻ đã bỏ qua
+  stripIgnoreTagBody, // Xoá nội dung bên trong thẻ
+}
+app.use(xssSanitize(options))
+
+const expressMongoSanitize = require('express-mongo-sanitize');
+app.use(expressMongoSanitize({
+  allowDots:true
+}));
 
 // Middleware
 app.use(cors({
@@ -97,7 +121,10 @@ app.use(expressWinston.logger({
   }
 }));
 // Routes
-app.use('/api/auth', authRoutes);
+const authLimiter = getLimiter({
+  max:10 // 10 request/phút
+})
+app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/orders', orderRoutes);
