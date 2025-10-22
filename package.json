@@ -14,5 +14,8 @@
   "author": "",
   "license": "ISC",
   "bugs": {},
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "helmet": "^8.1.0"
+  }
 }

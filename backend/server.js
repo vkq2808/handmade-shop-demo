@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const authRoutes = require('./routes/auth.route');
 const productRoutes = require('./routes/product.route');
@@ -16,6 +17,10 @@ const favoriteRoutes = require('./routes/favorite.route');
 const importRoutes = require('./routes/import.route');
 const settingsRoutes = require('./routes/settings.route');
 
+const expressWinston = require('express-winston'); 
+const logger = require('./utils/logger.js')
+const jwt = require('jsonwebtoken');
+const User = require('./models/User');
 dotenv.config();
 
 const app = express();
@@ -27,13 +32,70 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
 
-// Logger middlewares
+// Cau hinh header
 app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.url}`);
+  // Ngăn bị nhúng trong iframe ngoài domain
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  
+  res.setHeader(
+    "Content-Security-Policy",
+    `
+    default-src 'self' ${process.env.FRONTEND_URL} ;
+    script-src 'self' ${process.env.FRONTEND_URL} https://apis.google.com https://www.googletagmanager.com;
+    style-src 'self' ${process.env.FRONTEND_URL}  https://fonts.googleapis.com;
+    img-src 'self' data: blob: ${process.env.FRONTEND_URL} https:;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' ${process.env.FRONTEND_URL} https://api.stripe.com wss:;
+    frame-src 'self' https://js.stripe.com https://hooks.stripe.com;
+    frame-ancestors 'self';
+    base-uri 'self';
+    form-action 'self';
+    object-src 'none';
+    upgrade-insecure-requests;
+    `
+      .replace(/\s{2,}/g, ' ') // loại bỏ khoảng trắng thừa
+      .trim()
+  );
   next();
 });
 
+// Định danh người dùng từ JWT trong cookie
+app.use(async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (token) {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decoded.id).select('-password');
+    }
+  } catch (err) {
+    // Không cần xử lý lỗi, nếu token không hợp lệ thì coi như guest
+  }
+  next();
+});
+// Ghi log cho các request HTTP
+app.use(expressWinston.logger({
+  winstonInstance: logger,
+  msg: 'HTTP {{req.method}} {{req.url}}', // Định dạng thông báo
+  expressFormat: true, // Sử dụng định dạng mặc định của Express
+  colorize: false, // Không cần tô màu khi ghi vào file
+  meta: true, // Ghi lại metadata (ip, user-agent,...)
+  statusLevels: true, // Phân loại log theo mã trạng thái (ví dụ: 5xx là 'error', 4xx là 'warn')
+  dynamicMeta: (req, res) => {
+    const meta = {};
+    if (req.user) {
+      meta.userId = req.user._id;
+      meta.userEmail = req.user.email;
+      meta.userRole = req.user.role;
+    }
+    else {
+      meta.userId = 'Guest';
+    }
+    return meta;
+  }
+}));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
