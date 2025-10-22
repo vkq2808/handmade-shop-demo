@@ -25,7 +25,13 @@ router.get("/related/:id", getRelatedProducts);
 router.get("/:id/review-eligibility", protect, getReviewEligibility);
 router.get("/:id/my-feedback", protect, getMyFeedback);
 router.get("/:id", getProductById);
-router.post("/:id/feedback", protect, addFeedback);
+
+const getLimiter = require('../config/redis');
+const addFeedbackLimiter = getLimiter({
+  max:5 //5 lần mỗi phút
+})
+
+router.post("/:id/feedback",addFeedbackLimiter, protect, addFeedback);
 router.put("/:id/feedback", protect, updateMyFeedback);
 router.post("/reviewed-flags", protect, getReviewedFlags);
 

@@ -1,0 +1,107 @@
+version: 0.5
+name: "Blind NoSQL-style - v0.5 profile"
+description: |
+  v0.5 profile template for the Arachni WebUI. Designed to test
+  REST/JSON endpoints for blind/noSQL-like injection by injecting
+  crafted payloads into path segments, query parameters and JSON
+  request bodies. Review/adjust before use and only scan targets you
+  are authorized to test.
+
+# Scope: include only the endpoints you listed
+
+# HTTP options
+http:
+  user_agent: "Arachni-WebUI-v0.5-NoSQL-Template/1.0"
+  request_timeout: 20
+  follow_location: true
+  max_concurrency: 10
+  headers:
+    Accept: "application/json, text/plain, */*"
+
+# Authentication (disabled by default). If endpoints require auth,
+# provide a Header or login sequence via the WebUI's session management.
+auth:
+  enabled: false
+  # Example header (uncomment and set if needed):
+  # headers:
+  #   Authorization: "Bearer YOUR_TOKEN_HERE"
+
+# Audit configuration (what Arachni should look at and fuzz)
+audit:
+  elements:
+    links: false
+    forms: true
+    cookies: true
+    headers: false
+    json: true
+    xhr: true
+  # Limit the number of inputs per element to avoid explosion
+  inputs_limit: 50
+
+# Checks
+# Arachni's built-in checks are powerful for classic SQLi/XSS; for NoSQL
+# we rely on custom payloads + heuristics. Keep built-in checks enabled
+# as they can still reveal useful info.
+checks:
+  - "sql_injection"
+  - "xss"
+  - "directory_indexing"
+  - "unhandled_exceptions"
+  - "content_type_mismatch"
+
+# Custom audit options: a set of payloads to inject into JSON/body/query/path
+# These payloads are intentionally lightweight and boolean-style to reduce
+# destructive impact. Add more targeted payloads if you know the DB (MongoDB).
+custom:
+  nosql_payloads:
+    - '{"$ne": null}'
+    - '{"$gt": ""}'
+    - '{"$regex": ".*"}'
+    - '{"$exists": true}'
+    - '["", {"$ne": null}]'
+    - "' || true || '"
+    - '{"$where": "function(){return true;}"}'
+  injection_targets:
+    - type: json
+      enabled: true
+      description: "Inject into JSON string fields and object values"
+    - type: query
+      enabled: true
+      description: "Inject into query parameters (e.g. ?q=)"
+    - type: path
+      enabled: true
+      description: "Fuzz path segments (IDs / slugs)"
+
+# Heuristics: treat differences in these as potential blind injection signs
+heuristics:
+  - name: status_code_change
+    enabled: true
+  - name: body_length_delta
+    enabled: true
+    threshold: 0.10  # flag if body length changes by >10%
+  - name: json_structure_change
+    enabled: true
+
+# Rate limiting / politeness
+limits:
+  requests_per_second: 5
+  max_requests: 500
+
+# Reporting settings
+reporting:
+  formats:
+    - "html"
+    - "json"
+  report_dir: "./arachni-nosqli-v0.5-report"
+
+# Notes for operator
+notes: |
+  * This is a v0.5-style profile meant for the Arachni WebUI (v0.5.x).
+  * Arachni does not include a "NoSQL" branded check by default — use
+    the custom payloads above and run boolean/error heuristics to detect
+    suspicious behaviour.
+  * If your WebUI still complains about format, export a working profile
+    from the WebUI (Settings -> Profiles -> Export) and compare its
+    structure; then copy fields (this file includes the important v0.5
+    keys: version, scope, http, audit, checks).
+  * Only run against systems you own or have explicit permission to test.
