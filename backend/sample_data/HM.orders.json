@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "687a0a95f6ca0ffe33d83b50"
+  },
+  "user": {
+    "$oid": "687658e66553948e7de37f41"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "687a05351c3930b0c83db6b6"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "687a0a95f6ca0ffe33d83b51"
+      }
+    }
+  ],
+  "shippingAddr": {
+    "fullName": "Nguyễn Văn A",
+    "phone": "0901234567",
+    "addressLine": "123 Đường ABC",
+    "city": "Hà Nội",
+    "postalCode": "100000",
+    "_id": {
+      "$oid": "687a0a95f6ca0ffe33d83b52"
+    }
+  },
+  "paymentMethod": "MoMo",
+  "totalAmount": 17500,
+  "note": "Vui lòng giao sau 18h",
+  "status": "pending",
+  "isPaid": false,
+  "createdAt": {
+    "$date": "2025-07-18T08:49:25.862Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:49:25.862Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a0aa1f6ca0ffe33d83b57"
+  },
+  "user": {
+    "$oid": "687658e66553948e7de37f41"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "687a053d1c3930b0c83db6ba"
+      },
+      "quantity": 2,
+      "_id": {
+        "$oid": "687a0aa1f6ca0ffe33d83b58"
+      }
+    }
+  ],
+  "shippingAddr": {
+    "fullName": "Nguyễn Văn A",
+    "phone": "0901234567",
+    "addressLine": "123 Đường ABC",
+    "city": "Hà Nội",
+    "postalCode": "100000",
+    "_id": {
+      "$oid": "687a0aa1f6ca0ffe33d83b59"
+    }
+  },
+  "paymentMethod": "MoMo",
+  "totalAmount": 100000,
+  "note": "Vui lòng giao sau 18h",
+  "status": "pending",
+  "isPaid": false,
+  "createdAt": {
+    "$date": "2025-07-18T08:49:37.457Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:49:37.457Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687a0afc3f536fb05f519345"
+  },
+  "user": {
+    "$oid": "687658e66553948e7de37f41"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "687a04d51c3930b0c83db6ae"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "687a0afc3f536fb05f519346"
+      }
+    }
+  ],
+  "shippingAddr": {
+    "fullName": "Nguyễn Văn A",
+    "phone": "0901234567",
+    "addressLine": "ThaiBinh",
+    "city": "Thai Binh",
+    "postalCode": "100000",
+    "_id": {
+      "$oid": "687a0afc3f536fb05f519347"
+    }
+  },
+  "paymentMethod": "COD",
+  "totalAmount": 150000,
+  "note": "Vui lòng giao sau 18h",
+  "status": "pending",
+  "isPaid": false,
+  "createdAt": {
+    "$date": "2025-07-18T08:51:08.780Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:51:08.780Z"
+  },
+  "__v": 0
+}]

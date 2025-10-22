@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "687a02d611cfbeca760341e0"
+  },
+  "name": "Trang sức",
+  "description": "Các sản phẩm trang sức handmade",
+  "createdAt": {
+    "$date": "2025-07-18T08:16:22.430Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:16:22.430Z"
+  },
+  "__v": 0,
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "687a02ee11cfbeca760341e4"
+  },
+  "name": "Móc len",
+  "description": "updated by admin",
+  "createdAt": {
+    "$date": "2025-07-18T08:16:46.431Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T11:58:25.711Z"
+  },
+  "__v": 0,
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "687a030411cfbeca760341e8"
+  },
+  "name": "Kẽm nhung",
+  "description": "Các sản phẩm làm từ kẽm nhung siêu hot",
+  "createdAt": {
+    "$date": "2025-07-18T08:17:08.281Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:17:08.281Z"
+  },
+  "__v": 0,
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "687a032b11cfbeca760341ec"
+  },
+  "name": "Nhựa tái chế",
+  "description": "Các chế phẩm làm từ nhựa tái sử dụng, tốt cho môi trường",
+  "createdAt": {
+    "$date": "2025-07-18T08:17:47.046Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-18T08:17:47.046Z"
+  },
+  "__v": 0,
+  "isActive": true
+}]
