@@ -97,5 +97,22 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal Server Error" });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+let serverPort = process.env.PORT || 5000;
+
+try {
+  const privateKey = fs.readFileSync(require('path').join(__dirname, sslKeyPath));
+  const certificate = fs.readFileSync(require('path').join(__dirname, sslCertPath));
+
+  const credentials = { key: privateKey, cert: certificate };
+
+  // Create HTTPS server
+  https.createServer(credentials, app).listen(serverPort, () => {
+    console.log(`🔒 HTTPS Server running on port ${serverPort}`);
+  });
+} catch (err) {
+  console.error('❌ Failed to start HTTPS server. Falling back to HTTP. Error:', err);
+
+  // If certs are missing or unreadable, fallback to HTTP (commented out per request)
+  // Uncomment the lines below to enable HTTP fallback
+  // app.listen(serverPort, () => console.log(`🚀 Server running on port ${serverPort}`));
+}

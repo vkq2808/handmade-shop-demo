@@ -7,6 +7,11 @@ const { generateEmailVerificationToken, sendVerificationEmail, sendPasswordReset
 
 const { validationResult } = require('express-validator');
 
+// Password policy regex: at least 11 chars, one uppercase, one digit, one special char
+const passwordPolicyRegex = /^(?=.{11,}$)(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*$/;
+
+const isPasswordValid = (pwd) => passwordPolicyRegex.test(String(pwd || ''));
+
 // [POST] /api/auth/register
 const register = async (req, res) => {
 
@@ -17,6 +22,10 @@ const register = async (req, res) => {
 
   try {
     const { name, email, password, phone, address, city, zipCode } = req.body;
+    // Validate password policy server-side
+    if (!isPasswordValid(password)) {
+      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 11 ký tự, gồm chữ hoa, số và ký tự đặc biệt' });
+    }
     if (!email)
       return res.status(400).json({ message: 'Email là bắt buộc' });
     const emailNorm = String(email || '').trim().toLowerCase();
@@ -95,11 +104,11 @@ const login = async (req, res) => {
 
     // Tìm user theo email
     const user = await User.findOne({ email: new RegExp(`^${esc(emailNorm)}$`, 'i') });
-    if (!user) return res.status(400).json({ message: 'Tài khoản không tồn tại' });
+    if (!user) return res.status(400).json({ message: 'Mật khẩu hoặc tên đăng nhập không chính xác.' });
 
     // So sánh mật khẩu
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Sai mật khẩu' });
+    if (!isMatch) return res.status(400).json({ message: 'Mật khẩu hoặc tên đăng nhập không chính xác.' });
 
     // Kiểm tra tài khoản bị khóa
     if (!user.isActive) return res.status(403).json({ message: 'Tài khoản đã bị khóa' });
@@ -123,7 +132,7 @@ const login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       sameSite: 'lax',
-      secure: false // đặt thành true nếu dùng HTTPS
+      secure: true // đặt thành true nếu dùng HTTPS
     });
 
     res.json({
@@ -328,8 +337,8 @@ const resetPassword = async (req, res) => {
       return res.status(400).json({ message: 'Token và mật khẩu mới là bắt buộc' });
     }
 
-    if (newPassword.length < 6) {
-      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 6 ký tự' });
+    if (!isPasswordValid(newPassword)) {
+      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 11 ký tự, gồm chữ hoa, số và ký tự đặc biệt' });
     }
 
     // Tìm user theo token và kiểm tra token chưa hết hạn
@@ -345,6 +354,10 @@ const resetPassword = async (req, res) => {
       });
     }
 
+    // Validate new password policy before hashing
+    if (!isPasswordValid(newPassword)) {
+      return res.status(400).json({ message: 'Mật khẩu mới phải có ít nhất 11 ký tự, gồm chữ hoa, số và ký tự đặc biệt' });
+    }
     // Hash mật khẩu mới
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);

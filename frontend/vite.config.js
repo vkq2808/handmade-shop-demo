@@ -7,13 +7,17 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
+      https: {
+      key: fs.readFileSync(path.resolve(__dirname, '../cert/key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, '../cert/cert.pem')),
+    },
       "/api": {
-        target: "http://localhost:5000",
+        target: "https://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
       "/uploads": {
-        target: "http://localhost:5000",
+        target: "https://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
